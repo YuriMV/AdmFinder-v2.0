@@ -9,5 +9,5 @@ Admin Finder Written in C ;)
   gcc -o adm admfinderv2.c -lcurl -std=c99 -pedantic
   
   
-# Comandos: 
+# Comando: 
  ./adm site lista.txt(arquivo onde os painéis estão)
