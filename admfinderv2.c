@@ -7,9 +7,13 @@ by: vold
 #include <string.h>
 #include <curl/curl.h>
 
-
 #define MAX 100
 #define BUFFER 300
+
+void msg(char *str, int erro) {
+    fprintf(stderr, "%s", str);
+    exit(erro);
+}
 
 int main(int argc, char **argv) {
     
@@ -23,9 +27,8 @@ int main(int argc, char **argv) {
    void request(char psite[1024]);
    FILE *ptrfile = fopen(argv[2], "r+"); 
    
-    if (ptrfile==NULL) {
-      fprintf(stderr, "erro ao abrir arquivo\n");
-      fclose(ptrfile);
+    if (!ptrfile) {
+      msg("erro ao abrir arquivo. \n", -1);
     }
     
     int count= 0;
@@ -61,8 +64,8 @@ void request(char psite[1024]) {
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, call);
         res = curl_easy_perform(curl);
         curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &http_code);
-        if (http_code==301 || http_code==302) {
-            fprintf(stdout, "found - >%s\n", psite);
+        if (http_code==301 || http_code==302 || http_code==200) {
+            fprintf(stdout, "encontrado - >%s\n", psite);
         } else {
             fprintf(stdout, "not found - >%s\n", psite);
         }
