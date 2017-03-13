@@ -65,7 +65,7 @@ void request(char psite[1024]) {
         res = curl_easy_perform(curl);
         curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &http_code);
         if (http_code==301 || http_code==302 || http_code==200) {
-            fprintf(stdout, "encontrado - >%s\n", psite);
+            fprintf(stdout, "found - >%s\n", psite);
         } else {
             fprintf(stdout, "not found - >%s\n", psite);
         }
