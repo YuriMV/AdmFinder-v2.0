@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
      
    int call(void);
    void request(char psite[1024]);
-   FILE *ptrfile = fopen(argv[2], "r+"); 
+   FILE *ptrfile = fopen(argv[2], "r"); 
    
     if (!ptrfile) {
       msg("erro ao abrir arquivo. \n", -1);
